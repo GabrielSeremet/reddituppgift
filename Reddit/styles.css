@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(56, 55, 55);
+    color: white; 
+}
+
+#icon {
+   position: relative;
+   left: 140px;
+   top: -70px;
+    
+}
+
+li {
+    display: block;
+    float: left;
+    padding: 5px;   
+    font-size: x-large;
+}
+
+#NavBar {
+    position: relative;
+    top: -155px;
+    right: -200px;
+    
+}
+
+#divider {
+    position: relative;
+    top: -120px;
+    left: -10px;
+    width: 2500px;
+}
+
+#chatbubble{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    top: -10px;
+    }
+
+#create-post1{
+    position: relative;
+    left: 500px;
+    top: -80px;
+    
+}
+
+#create-post2{
+    position: relative;
+    left: 500px;
+    top: -80px;
+}
+
