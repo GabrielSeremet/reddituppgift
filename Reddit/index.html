@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +13,6 @@
         <h1>BLUDIT</h1>
         <img id="icon" src="images/AlienBlue_Icon.png" alt="icon" width="80" height="80">
     </header>
-<script src="main.js"></script>
 
     <navbar id="NavBar">
         <ul>
@@ -47,11 +45,28 @@
             </li>
         </ul>
     </navbar>
-<hr id="divider">
-    <main id="main feed">
-        <div class="create-post">
-            <input type="text" id="create-post1" placeholder="Create Post">
-            <button type="button" id="create-post2">Create</button>
-        </div>
+
+    <div class="create-post">
+        <form id="create-post-form">
+            <input type="text" id="create-post-title" placeholder="Title">
+            <textarea id="create-post-body" placeholder="Body"></textarea>
+            <button type="button" id="create-post-button">Create Post</button>
+            <select id="choose-post-tag">
+                <option disabled selected>Choose a tag</option>
+                <option value="Hobbies">Hobbies</option>
+                <option value="Science">Science</option>
+                <option value="Stories">Stories</option>
+                <option value="advice">Advice</option>
+                <option value="Entertainment">Entertainment</option>
+              </select>
+              
+        </form>
+    </div>
+    <hr id="divider">
+    <main id="main-feed">
     </main>
+
+    <script src="main.js"></script>
 </body>
+
+</html>

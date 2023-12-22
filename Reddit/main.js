@@ -1,13 +1,69 @@
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('create-post-button').addEventListener('click', createPost);
+
+  // Load existing posts from local storage
+  const existingPosts = getPostsFromLocalStorage();
+  if (existingPosts) {
+    existingPosts.forEach(post => renderPost(post));
+  }
+});
+
+function addTags() {
+  return ['Hobbies', 'Science', 'Stories', 'advice', 'Entertainment'];
+}
+
+function createPost() {
+  const titleInput = document.getElementById('create-post-title');
+  const bodyInput = document.getElementById('create-post-body');
+  const tagSelect = document.getElementById('choose-post-tag');
+
+  const title = titleInput.value.trim();
+  const body = bodyInput.value.trim();
+  const selectedTag = tagSelect.value.trim();
+
+  if (title && body && selectedTag) {
+    const newPost = {
+      id: Date.now(),
+      title,
+      body,
+      tag: selectedTag,
+      votes: 0,
+    };
+
+    renderPost(newPost);
+
+    titleInput.value = '';
+    bodyInput.value = '';
+    tagSelect.value = 'Choose a tag';
+
+    savePostToLocalStorage(newPost);
+  } else {
+    alert('Please enter both title, tag, and body.');
+  }
+}
+
+function savePostToLocalStorage(post) {
+  const existingPosts = getPostsFromLocalStorage() || [];
+  existingPosts.push(post);
+  localStorage.setItem('posts', JSON.stringify(existingPosts));
+}
+
+function getPostsFromLocalStorage() {
+  const posts = localStorage.getItem('posts');
+  return posts ? JSON.parse(posts) : null;
+}
+
 fetch('https://dummyjson.com/posts')
   .then(res => res.json())
   .then(data => {
     data.posts.forEach(post => {
-      // Default to 0 if 'votes' is not present in the response
       const votes = post.votes !== undefined ? post.votes : 0;
-      renderPost({ ...post, votes });
+      const tag = post.tag || getRandomTag();
+      renderPost({ ...post, votes, tag });
     });
   })
   .catch(error => console.error('Error fetching data:', error));
+
 
 function renderPost(post) {
   const postContainer = document.createElement('div');
@@ -18,6 +74,9 @@ function renderPost(post) {
 
   const postBody = document.createElement('p');
   postBody.textContent = post.body;
+
+  const tag = document.createElement('span');
+  tag.textContent = `Tag: ${post.tag}`;
 
   const voteContainer = document.createElement('div');
   voteContainer.classList.add('vote-container');
@@ -37,15 +96,12 @@ function renderPost(post) {
   }
 
   function handleVote(postId, value) {
-    // Update the vote count directly on the client side
     const updatedVotes = post.votes + value;
     updateVoteCount(updatedVotes);
 
-    // You may also want to send a request to a server to persist the vote if needed
   }
 
   function updateVoteCount(updatedVotes) {
-    // Update the vote count on the UI
     voteCount.textContent = `Votes: ${updatedVotes}`;
   }
 
@@ -55,7 +111,13 @@ function renderPost(post) {
 
   postContainer.appendChild(postTitle);
   postContainer.appendChild(postBody);
+  postContainer.appendChild(tag);
   postContainer.appendChild(voteContainer);
 
   document.body.appendChild(postContainer);
+}
+
+function getRandomTag() {
+  const tags = addTags(); 
+  return tags[Math.floor(Math.random() * tags.length)];
 }
