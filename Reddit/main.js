@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('create-post-button').addEventListener('click', createPost);
 
-  // Load existing posts from local storage
   const existingPosts = getPostsFromLocalStorage();
   if (existingPosts) {
     existingPosts.forEach(post => renderPost(post));
@@ -34,11 +33,11 @@ function createPost() {
 
     titleInput.value = '';
     bodyInput.value = '';
-    tagSelect.value = 'Choose a tag';
+    tagSelect.value = 'No tag';
 
     savePostToLocalStorage(newPost);
   } else {
-    alert('Please enter both title, tag, and body.');
+    alert('Please enter both title and body.');
   }
 }
 

@@ -3,13 +3,6 @@ body {
     color: white; 
 }
 
-#icon {
-   position: relative;
-   left: 140px;
-   top: -70px;
-    
-}
-
 li {
     display: block;
     float: left;
@@ -23,20 +16,6 @@ li {
     right: -100px;
     
 }
-
-#divider {
-    position: relative;
-    top: -120px;
-    left: -10px;
-    width: 2500px;
-}
-
-#chatbubble{
-    position: relative;
-    width: 60px;
-    height: 60px;
-    top: -10px;
-    }
 
 #create-post1{
     position: relative;
@@ -64,6 +43,7 @@ body {
     justify-content: center;
     height: -300px;
     margin: 0;
+    background-color: black;
 }
   
   .post-container {
@@ -71,7 +51,24 @@ body {
     border-radius: 8px;
     padding: 16px;
     margin: 8px;
-    max-width: 600px;
+    max-width: 1000px;
     width: 100%;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(102, 102, 102);
 }
+
+#NavBar  {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    max-width: 2000px;
+    width: 100%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(102, 102, 102);
+    left: 0px;
+    top: -10px;
+    align-items: center;
+    justify-content: center;
+}
+    
